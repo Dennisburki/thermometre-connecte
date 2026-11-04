@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Thermomètre",
+    "slug": "thermometre-mobile",
+    "scheme": "thermometre",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "android": {
+      "usesCleartextTraffic": true,
+      "package": "com.thermometre.app"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4e45d1f5-5208-4ffd-9cb9-f5bfd95bd2d1"
+      }
+    }
+  }
+}

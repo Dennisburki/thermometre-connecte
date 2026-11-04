@@ -1,0 +1,19 @@
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+
+# Dépendances
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
