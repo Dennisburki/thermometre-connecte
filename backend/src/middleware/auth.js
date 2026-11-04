@@ -6,7 +6,7 @@ function isValidSecret(secret)
     return typeof secret === "string" && secret.length >= 32;
 }
 
-// Vérifie que les secrets sont correctement configurés.
+// Vérification de la configuration des secrets.
 export function validateSecurityConfig()
 {
     const picoToken = process.env.PICO_DEVICE_TOKEN;
@@ -56,7 +56,7 @@ function tokenMatches(receivedToken, expectedToken)
     return timingSafeEqual(received, expected);
 }
 
-// Crée un middleware d'authentification à partir d'une variable d'environnement.
+// middleware d'authentification à partir d'une variable d'environnement.
 function createBearerAuth(envName)
 {
     return (req, res, next) =>
@@ -77,7 +77,7 @@ function createBearerAuth(envName)
     };
 }
 
-// Authentification du Raspberry Pi Pico.
+// Authentification du Raspberry Pico.
 export const authenticatePico =
     createBearerAuth("PICO_DEVICE_TOKEN");
 

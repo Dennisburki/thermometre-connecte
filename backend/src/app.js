@@ -4,13 +4,13 @@ import readingRoutes from "./routes/readingRoutes.js";
 
 const app = express();
 
-// Render utilise un proxy devant notre serveur.
+// Render utilise un proxy devant le serveur.
 app.set("trust proxy", 1);
 
 // Masque la technologie utilisée.
 app.disable("x-powered-by");
 
-// Ajoute quelques en-têtes de sécurité.
+// en-têtes de sécurité.
 app.use((req, res, next) =>
 {
     res.setHeader("X-Content-Type-Options", "nosniff");
