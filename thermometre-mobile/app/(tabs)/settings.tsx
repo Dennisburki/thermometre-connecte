@@ -163,12 +163,7 @@ export default function SettingsScreen()
         </Card>
       </Link>
 
-      <Card style={styles.row}>
-        <View style={styles.rowText}>
-          <Text style={styles.label}>Adresse de l’API</Text>
-          <Text style={styles.description}>{getApiBaseUrl()}</Text>
-        </View>
-      </Card>
+      
     </Screen>
   );
 }
