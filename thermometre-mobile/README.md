@@ -1,64 +1,37 @@
-# Thermomètre — squelette Expo
+# Thermomètre connecté
 
-Base TypeScript pour une application mobile Expo avec navigation déjà câblée via **Expo Router**.
+Projet personnel de thermomètre connecté permettant de mesurer la température, l'humidité et la pression atmosphérique, avec consultation des relevés depuis une application mobile.
 
-## Ce qui est déjà en place
+## Fonctionnalités
 
-- Onglets : **Accueil**, **Historique**, **Appareils**, **Réglages**
-- Navigation Stack pour les écrans secondaires : détail d'un appareil, ajout d'un appareil, détails d'une mesure et écran À propos
-- Routes dynamiques avec paramètres (`devices/[deviceId]`, `measurements/[measurementId]`)
-- Dossiers séparés pour composants, services API, hooks, types, constantes et utilitaires
-- Un service API centralisé et configuré via `EXPO_PUBLIC_API_URL`
-- Écrans de démonstration sans données métier définitives : tu peux remplacer leur contenu par tes vrais composants
+- Mesure de la température, de l'humidité et de la pression.
+- Affichage des données sur un écran OLED.
+- Transmission des mesures via Wi-Fi et HTTPS.
+- Consultation des dernières mesures et de l'historique.
+- Stockage des données dans MongoDB.
+- Gestion des accès à l'API par tokens.
 
-## Démarrage
+## Technologies
 
-Il faut Node.js installé. Depuis ce dossier :
+| Partie | Technologies |
+|---|---|
+| Objet connecté | Raspberry Pi Pico 2 W, MicroPython, BME280 |
+| Backend | Node.js, Express, MongoDB Atlas |
+| Application mobile | React Native, Expo, TypeScript |
+| Hébergement | Render, Expo EAS |
 
-```bash
-npm install
-npx expo start
-```
+## Architecture
 
-Scanne le QR code avec Expo Go, ou appuie sur `w` pour ouvrir la version web si les dépendances web sont installées.
+Le Pico 2 W récupère les données du capteur BME280 et les transmet à une API Node.js via HTTPS.
 
-Si les versions Expo ont évolué au moment où tu l'installes, le plus fiable est de créer d'abord un projet Expo Router officiel puis de copier les dossiers `app/` et `src/` de ce squelette dedans :
+L'API enregistre les mesures dans MongoDB Atlas. L'application mobile communique avec cette API pour afficher les relevés et leur historique.
 
-```bash
-npx create-expo-app@latest thermometre-mobile --template default
-```
+## Déploiement
 
-Ensuite copie `app/`, `src/`, `app.json`, `tsconfig.json` et adapte `package.json` si nécessaire. Expo documente la navigation par fichiers : https://docs.expo.dev/develop/app-navigation/
+- API hébergée sur Render.
+- Base de données sur MongoDB Atlas.
+- Application Android compilée avec Expo EAS.
 
-## Configurer l'API
+## À propos
 
-Crée un fichier `.env` à la racine :
-
-```env
-EXPO_PUBLIC_API_URL=http://192.168.1.13:4000
-```
-
-Remplace l'adresse par l'IP locale de la machine qui exécute ton backend. Le téléphone et le PC doivent être sur le même réseau Wi-Fi pour utiliser une adresse locale.
-
-Le service se trouve dans `src/services/api/client.ts`. Les routes API actuelles sont des exemples adaptés à ton backend connu :
-- `GET /mesures/latest`
-- `GET /mesures/history?limit=100`
-- `POST /mesures`
-
-À adapter à la forme exacte des réponses JSON de ton serveur.
-
-## Ajouter une page
-
-Crée un fichier sous `app/`. Le chemin du fichier devient automatiquement la route. Par exemple `app/account/profile.tsx` devient `/account/profile`.
-
-Pour une page accessible depuis les onglets, ajoute son entrée dans `app/(tabs)/_layout.tsx`. Pour un écran secondaire, ajoute son fichier sous `app/` et configure son titre dans `app/_layout.tsx`.
-
-## Organisation
-
-- `app/` : routes et layouts Expo Router
-- `src/components/` : composants UI réutilisables
-- `src/services/api/` : appels réseau
-- `src/hooks/` : hooks métier
-- `src/types/` : types TypeScript
-- `src/constants/` : couleurs et configuration
-- `src/utils/` : fonctions utilitaires
+Ce projet me permet de mettre en pratique le développement full-stack, de la programmation embarquée à la conception d'API et au développement mobile.
